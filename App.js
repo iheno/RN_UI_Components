@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableHighlight, ScrollView } from 'react-na
 import { createStackNavigator } from 'react-navigation';
 
 import Sample from './RN_component/sample';
-import Sample2 from './RN_component/RN_Touchables';
+import Sample2 from './RN_component/sample2';
 
 const HomeScreen = ({ navigation }) => (
   <ScrollView style={{ backgroundColor: '#fff' }}>
@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => (
         underlayColor="#fff"
         onPress={() => navigation.navigate('sub03')}
       >
-        <Text style={styles.customBtnText}>Boxs</Text>
+        <Text style={styles.customBtnText}>Box</Text>
       </TouchableHighlight>
     </View>
 
@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => (
         underlayColor="#fff"
         onPress={() => navigation.navigate('sub04')}
       >
-        <Text style={styles.customBtnText}>Cards</Text>
+        <Text style={styles.customBtnText}>Card</Text>
       </TouchableHighlight>
     </View>
 

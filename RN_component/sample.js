@@ -47,7 +47,7 @@ export default class RNButtons extends Component {
             style={{ marginBottom: 30 }}
           >
             <View style={styles.button_primary}>
-              <Text style={styles.f15White_lS}>REGISTER</Text>
+              <Text style={styles.f15White_bold}>REGISTER</Text>
             </View>
           </TouchableHighlight>
 
@@ -57,7 +57,7 @@ export default class RNButtons extends Component {
             style={{ marginBottom: 30 }}
           >
             <View style={styles.button_gray}>
-              <Text style={styles.f15Gray}>Search</Text>
+              <Text style={styles.f16Gray_bold}>Search</Text>
             </View>
           </TouchableHighlight>
 
@@ -75,18 +75,37 @@ export default class RNButtons extends Component {
           </View>
 
           <View style={styles.button_pay_set}>
+            <View style={styles.txt_pay_price}>
+              <Text style={styles.PriceTxt}>JYP 24,600</Text>
+            </View>
             <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
-              <View style={styles.txt_pay_price}>
-                <Text style={styles.PriceTxt}>JYP 24,600</Text>
+              <View style={styles.button_pay_none}>
+                <Text style={styles.f16White_bold}>PAY</Text>
               </View>
             </TouchableHighlight>
+          </View>
+
+          <View style={styles.button_pay_set}>
+            <View style={styles.txt_pay_price}>
+              <Text style={styles.PriceTxt}>JYP 24,600</Text>
+            </View>
             <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
-              <View style={styles.button_pay_before}>
+              <View style={styles.button_pay_active}>
                 <Text style={styles.f16White_bold}>PAY</Text>
               </View>
             </TouchableHighlight>
           </View>
         </View>
+
+        <TouchableHighlight
+          onPress={this._onPressButton}
+          underlayColor="white"
+          style={{ marginBottom: 30 }}
+        >
+          <View style={styles.button_black_small_right}>
+            <Text style={styles.f13Black}>Renew Card</Text>
+          </View>
+        </TouchableHighlight>
       </ScrollView>
     );
   }
@@ -96,9 +115,7 @@ const styles = StyleSheet.create({
   contanier: {
     width: screenWidth,
     paddingTop: 30,
-    paddingBottom: 30,
     flex: 1,
-    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#fff',
   },
@@ -140,6 +157,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  button_black_small_right: {
+    position: 'absolute',
+    right: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 120,
+    height: 30,
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderWidth: 0.5,
+    borderColor: 'rgba(51,51,51,1)',
+  },
   button_black_half_set: {
     flexDirection: 'row',
     flex: 1,
@@ -164,9 +194,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button_pay_before: {
+  button_pay_none: {
     width: screenWidth / 2 - 8 * 2,
     marginLeft: 4,
+    marginRight: 12,
     flex: 1,
     height: 54,
     borderRadius: 4,
@@ -174,12 +205,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  txt_pay_price: {
+  button_pay_active: {
     width: screenWidth / 2 - 8 * 2,
-    marginRight: 4,
+    marginLeft: 4,
+    marginRight: 12,
     flex: 1,
     height: 54,
     borderRadius: 4,
+    backgroundColor: 'rgba(233,30,99,1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  txt_pay_price: {
+    width: screenWidth / 2 - 8 * 2,
+    marginRight: 4,
+    marginLeft: 12,
+    flex: 1,
+    height: 54,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -192,9 +235,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     letterSpacing: 1,
   },
-  f15Gray: {
+  f13Black: {
+    color: 'rgba(51,51,51,1)',
+    fontSize: 13,
+    letterSpacing: 0.5,
+    fontWeight: 'bold',
+  },
+  f16Gray_bold: {
     color: 'rgba(206,206,206,1)',
-    fontSize: 15,
+    fontSize: 16,
     letterSpacing: 1,
   },
   f15White: {
@@ -202,10 +251,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     letterSpacing: 1,
   },
-  f15White_lS: {
+  f15White_bold: {
     color: 'rgba(255,255,255,1)',
     fontSize: 15,
     letterSpacing: 1,
+    fontWeight: 'bold',
   },
   f16White_bold: {
     color: 'rgba(255,255,255,1)',
