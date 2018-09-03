@@ -1,89 +1,178 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-import TodoInput from './src/components/TodoInput';
-import TodoItem from './src/components/TodoItem';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableHighlight, ScrollView } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
-export default class App extends Component<{}> {
-  constructor(props) {
-    super(props);
+import Sample from './RN_component/sample';
+import Sample2 from './RN_component/sample2';
 
-    this.state = {
-      list: [],
-    };
-  }
+const HomeScreen = ({ navigation }) => (
+  <ScrollView style={{ backgroundColor: '#fff' }}>
+    <View style={styles.page}>
+      <TouchableHighlight
+        style={styles.customBtnBG}
+        underlayColor="#fff"
+        onPress={() => navigation.navigate('sub01')}
+      >
+        <Text style={styles.customBtnText}>Buttons</Text>
+      </TouchableHighlight>
+    </View>
 
-  _delete = index => () => {
-    const list = [].concat(this.state.list);
-    list.splice(index, 1);
+    <View style={styles.page}>
+      <TouchableHighlight
+        style={styles.customBtnBG}
+        underlayColor="#fff"
+        onPress={() => navigation.navigate('sub02')}
+      >
+        <Text style={styles.customBtnText}>Font Sizing</Text>
+      </TouchableHighlight>
+    </View>
 
-    this.setState({
-      list,
-    });
-  };
+    <View style={styles.page}>
+      <TouchableHighlight
+        style={styles.customBtnBG}
+        underlayColor="#fff"
+        onPress={() => navigation.navigate('sub03')}
+      >
+        <Text style={styles.customBtnText}>Box</Text>
+      </TouchableHighlight>
+    </View>
 
-  _done = index => () => {
-    const list = [].concat(this.state.list);
-    list[index].done = !list[index].done;
+    <View style={styles.page}>
+      <TouchableHighlight
+        style={styles.customBtnBG}
+        underlayColor="#fff"
+        onPress={() => navigation.navigate('sub04')}
+      >
+        <Text style={styles.customBtnText}>Card</Text>
+      </TouchableHighlight>
+    </View>
 
-    this.setState({
-      list,
-    });
-  };
+    <View style={styles.page}>
+      <TouchableHighlight
+        style={styles.customBtnBG}
+        underlayColor="#fff"
+        onPress={() => navigation.navigate('sub05')}
+      >
+        <Text style={styles.customBtnText}>Elements</Text>
+      </TouchableHighlight>
+    </View>
+  </ScrollView>
+);
 
-  _onPress = (text) => {
-    const list = [].concat(this.state.list);
+const SubScreen01 = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Sample />
+  </View>
+);
 
-    list.push({
-      key: Date.now(),
-      text,
-      done: false,
-    });
+const SubScreen02 = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Sample2 />
+  </View>
+);
 
-    this.setState({
-      list,
-    });
-  };
+const SubScreen03 = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Sample2 />
+  </View>
+);
 
-  render() {
-    const { list } = this.state;
+const SubScreen04 = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Sample2 />
+  </View>
+);
 
-    return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <TodoInput onPress={this._onPress} />
-          <View style={styles.todoListContainer}>
-            <FlatList
-              style={styles.todoList}
-              data={list}
-              renderItem={({ item, index }) => (
-                <TodoItem onDone={this._done(index)} onDelete={this._delete(index)} {...item} />
-              )}
-            />
-          </View>
-        </View>
-      </View>
-    );
-  }
-}
+const SubScreen05 = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Sample2 />
+  </View>
+);
+
+const RootNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: {
+        headerTitle: 'UI Styles',
+        headerStyle: { backgroundColor: '#fff' },
+      },
+    },
+    sub01: {
+      screen: SubScreen01,
+      navigationOptions: {
+        headerStyle: { backgroundColor: '#fff' },
+        headerTitle: 'Buttons',
+        headerTintColor: '#000',
+        headerTitleStyle: { color: '#000' },
+      },
+    },
+    sub02: {
+      screen: SubScreen02,
+      navigationOptions: {
+        headerStyle: { backgroundColor: '#fff' },
+        headerTitle: 'Font Sizing',
+        headerTintColor: '#000',
+        headerTitleStyle: { color: '#000' },
+      },
+    },
+    sub03: {
+      screen: SubScreen03,
+      navigationOptions: {
+        headerStyle: { backgroundColor: '#fff' },
+        headerTitle: 'Boxs',
+        headerTintColor: '#000',
+        headerTitleStyle: { color: '#000' },
+      },
+    },
+    sub04: {
+      screen: SubScreen04,
+      navigationOptions: {
+        headerStyle: { backgroundColor: '#fff' },
+        headerTitle: 'Cards',
+        headerTintColor: '#000',
+        headerTitleStyle: { color: '#000' },
+      },
+    },
+    sub05: {
+      screen: SubScreen05,
+      navigationOptions: {
+        headerStyle: { backgroundColor: '#fff' },
+        headerTitle: 'Elements',
+        headerTintColor: '#000',
+        headerTitleStyle: { color: '#000' },
+      },
+    },
+  },
+  {
+    headerMode: 'float',
+  },
+);
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
-    backgroundColor: '#333',
-    paddingTop: 40,
-    alignItems: 'center',
-  },
-  main: {
-    flex: 1,
-    maxWidth: 400,
-    alignItems: 'center',
-  },
-  todoListContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
     flexDirection: 'row',
-    flex: 1,
   },
-  todoList: {
-    paddingLeft: 10,
-    paddingRight: 10,
+  customBtnBG: {
+    flex: 1,
+    marginHorizontal: 30,
+    marginTop: 30,
+    backgroundColor: '#fff',
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '#000',
+    borderWidth: 1,
+  },
+  customBtnText: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: '#000',
   },
 });
+
+export default RootNavigator;
